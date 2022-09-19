@@ -1,0 +1,23 @@
+.vip_box_heading{
+    border-bottom: 1px gray;
+    border-style:solid;
+}
+.vip_box_heading h1{
+    font-weight: 600;
+}
+.vip_box_content img{
+    max-height:200px;
+    width:100%;
+}
+.popup-image{
+    max-height:200px;
+}
+.product{
+    border-bottom: 1px gray;
+    border-style: solid;
+}
+.vip-box{
+    background-color: rgba(255, 215, 0, 0.7);
+    border-radius: 5%;
+    padding:10px;
+}
