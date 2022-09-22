@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'transaction_id' => 'required|string|max:255|',
@@ -45,7 +45,8 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'transaction_id' => $request->transaction_id
+            'transaction_id' => $request->transaction_id,
+            'referrer' => $request->referrer,
         ]);
 
         event(new Registered($user));

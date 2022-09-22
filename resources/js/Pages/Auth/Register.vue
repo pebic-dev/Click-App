@@ -12,6 +12,7 @@ const form = useForm({
     password: '',
     password_confirmation: '',
     transaction_id: '',
+    referrer: '',
     terms: false,
 });
 
@@ -43,6 +44,12 @@ const submit = () => {
                 <InputLabel for="transaction_id" value="Transaction ID" />
                 <TextInput id="transaction_id" type="text" class="mt-1 block w-full" v-model="form.transaction_id" required autocomplete="transaction_id" />
                 <InputError class="mt-2" :message="form.errors.transaction_id" />
+            </div>
+
+            <div>
+                <InputLabel for="referrer" value="Referrer name" />
+                <TextInput id="referrer" type="text" class="mt-1 block w-full" v-model="form.referrer" autocomplete="referrer" />
+                <InputError class="mt-2" :message="form.errors.referrer" />
             </div>
 
             <div class="mt-4">

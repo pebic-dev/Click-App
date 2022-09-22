@@ -22,8 +22,11 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('transaction_id')->nullable();
-            $table->float('deposit')->nullable();
-            $table->float('balance')->nullable();
+            $table->float('deposit')->default(30);
+            $table->float('balance')->default(0);
+            $table->integer('clicks')->default(30);
+            $table->integer('reffs')->default(0);
+            $table->string('referrer')->nullable();
         });
     }
 

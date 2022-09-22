@@ -23,16 +23,23 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/topup', function () {
+    return Inertia::render('Topup');
+})->middleware(['auth', 'verified'])->name('topup');
+Route::get('/withdraw', function () {
+    return Inertia::render('Withdraw');
+})->middleware(['auth', 'verified'])->name('withdraw');
 Route::get('/vip/1', 'App\Http\Controllers\AdController@showVip_1')->middleware(['auth', 'verified'])->name('vip1');
-Route::get('/vip/2', function(){
-    return Inertia::render('Vip-Group');
-})->middleware(['auth', 'verified'])->name('vip2');
-Route::get('/vip/3', function(){
-    return Inertia::render('Vip-Group');
-})->middleware(['auth', 'verified'])->name('vip3');
-Route::get('/vip/4', function(){
-    return Inertia::render('Vip-Group');
-})->middleware(['auth', 'verified'])->name('vip4');
+Route::post('/vip/1/click', 'App\Http\Controllers\AdController@logicVip_1')->middleware(['auth', 'verified'])->name('vip1.post');
+
+Route::get('/vip/2', 'App\Http\Controllers\AdController@showVip_2')->middleware(['auth', 'verified'])->name('vip2');
+Route::post('/vip/2/click', 'App\Http\Controllers\AdController@logicVip_2')->middleware(['auth', 'verified'])->name('vip2.post');
+
+Route::get('/vip/3', 'App\Http\Controllers\AdController@showVip_3')->middleware(['auth', 'verified'])->name('vip3');
+Route::post('/vip/13/click', 'App\Http\Controllers\AdController@logicVip_3')->middleware(['auth', 'verified'])->name('vip3.post');
+
+Route::get('/vip/4', 'App\Http\Controllers\AdController@showVip_4')->middleware(['auth', 'verified'])->name('vip4');
+Route::post('/vip/4/click', 'App\Http\Controllers\AdController@logicVip_4')->middleware(['auth', 'verified'])->name('vip4.post');
 require __DIR__.'/auth.php';
 
 
