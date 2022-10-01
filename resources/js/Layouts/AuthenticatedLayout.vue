@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import ApplicationLogoWhite from '@/Components/ApplicationLogoWhite.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
@@ -12,7 +12,7 @@ const showingNavigationDropdown = ref(false);
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +21,7 @@ const showingNavigationDropdown = ref(false);
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationLogo class="block h-9 w-auto" />
+                                    <ApplicationLogoWhite class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
@@ -30,16 +30,16 @@ const showingNavigationDropdown = ref(false);
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </NavLink>
-                                <NavLink :href="route('vip1')" :active="route().current('vip1')">
+                                <NavLink v-if="$page.props.auth.user.deposit + $page.props.auth.user.balance >= 30" :href="route('vip1')" :active="route().current('vip1')">
                                     VIP 1
                                 </NavLink>
-                                <NavLink :href="route('vip2')" :active="route().current('vip2')">
+                                <NavLink v-if="$page.props.auth.user.deposit + $page.props.auth.user.balance >= 500" :href="route('vip2')" :active="route().current('vip2')">
                                     VIP 2
                                 </NavLink>
-                                <NavLink :href="route('vip3')" :active="route().current('vip3')">
+                                <NavLink v-if="$page.props.auth.user.deposit + $page.props.auth.user.balance >= 2000" :href="route('vip3')" :active="route().current('vip3')">
                                     VIP 3
                                 </NavLink>
-                                <NavLink :href="route('vip4')" :active="route().current('vip4')">
+                                <NavLink v-if="$page.props.auth.user.deposit + $page.props.auth.user.balance >= 5000" :href="route('vip4')" :active="route().current('vip4')">
                                     VIP 4
                                 </NavLink>
                             </div>
@@ -118,46 +118,42 @@ const showingNavigationDropdown = ref(false);
                         <ResponsiveNavLink :href="route('vip1')" :active="route().current('vip1')">
                                     VIP 1
                                 </ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('vip2')" :active="route().current('vip2')">
+                                <ResponsiveNavLink v-if="$page.props.auth.user.deposit + $page.props.auth.user.balance >= 500" :href="route('vip2')" :active="route().current('vip2')">
                                     VIP 2
                                 </ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('vip3')" :active="route().current('vip3')">
+                                <ResponsiveNavLink v-if="$page.props.auth.user.deposit + $page.props.auth.user.balance >= 2000" :href="route('vip3')" :active="route().current('vip3')">
                                     VIP 3
                                 </ResponsiveNavLink>
-                                <ResponsiveNavLink :href="route('vip4')" :active="route().current('vip4')">
+                                <ResponsiveNavLink v-if="$page.props.auth.user.deposit + $page.props.auth.user.balance  >= 5000" :href="route('vip4')" :active="route().current('vip4')">
                                     VIP 4
                                 </ResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">Total Balance:{{ $page.props.auth.user.balance + $page.props.auth.user.deposit  }}</div>
-                            <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
-                        </div>
-
-                        <div class="mt-3 space-y-1">
+                        <div class="space-y-1">
                             <ResponsiveNavLink :href="route('topup')" as="button">
                                 Top Up
                             </ResponsiveNavLink>
                             <ResponsiveNavLink :href="route('withdraw')" as="button">
-                                Withdraw (Available: ${{$page.props.auth.user.balance}} )
+                                Withdraw <span v-if="$page.props.auth.user.balance > 20">(Available: ${{$page.props.auth.user.balance}} )</span>
                             </ResponsiveNavLink>
-                        </div>
-
-                        <div class="px-4">
-                            <div class="font-medium text-base text-gray-800">{{ $page.props.auth.user.name }}</div>
-                            <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
+                              <ResponsiveNavLink :href="route('howto')" as="button">
+                                How to use <span class="blue-text">Wishyclick</span>
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink as="button" :href="route('telegram')">
+                                Official Support
+                                <span><img style="display:inline-block" class="w-5 h-5" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/240px-Telegram_logo.svg.png"> </span>
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink :href="route('refferals')" as="button">
+                                My Refferals
+                            </ResponsiveNavLink>
                         </div>
 
                         <div class="mt-3 space-y-1">
                             <ResponsiveNavLink :href="route('logout')" method="post" as="button">
-                                Log Out
+                                <span class="font-bold">Log Out</span>
                             </ResponsiveNavLink>
-                            <p class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">
-                                Referrals: {{$page.props.auth.user.reffs}}
-
-                            </p>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 .vip_box_heading{
-    border-bottom: 1px gray;
+    border-bottom: 1px white;
     border-style:solid;
 }
 .vip_box_heading h1{
@@ -17,7 +17,16 @@
     border-style: solid;
 }
 .vip-box{
-    background-color: rgba(255, 215, 0, 0.7);
-    border-radius: 5%;
-    padding:10px;
+    background-color:rgba(47,183,235,255)!important;
+    border-radius: 20px;
+}
+.bg-gray-100{
+    background-color:rgba(47,183,235,255)!important;
+}
+.blue-text{
+    color:rgba(47,183,235,255)!important;
+}
+.vip_box_content img{
+    border-radius: 20px;
+
 }

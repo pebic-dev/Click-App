@@ -37,22 +37,25 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
+            'referrer' => 'max:255|min:0',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'transaction_id' => 'required|string|max:255|',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'transaction_id' => $request->transaction_id,
             'referrer' => $request->referrer,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
-
+        $ref = User::where('name', $request->referrer)->first();
+        if($ref != null){
+        $ref->reffs = $ref->reffs + 1;
+        $ref->save();
+        }
         return redirect(RouteServiceProvider::HOME);
     }
 }

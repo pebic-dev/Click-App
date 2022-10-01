@@ -1,8 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite",
-        "build": "vite build",
+        "dev": "vite --host https://134.209.228.105",
+        "build": "vite build --mode development",
         "craftable-dev": "mix",
         "craftable-watch": "mix watch",
         "craftable-prod": "mix --production"

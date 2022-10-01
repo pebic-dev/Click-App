@@ -6,7 +6,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
-const form = useForm({
+ const form = useForm({
     name: '',
     email: '',
     password: '',
@@ -16,11 +16,20 @@ const form = useForm({
     terms: false,
 });
 
+let uri = window.location.search.substring(1); 
+let params = new URLSearchParams(uri);
+if(params.get("referrer") != null){
+ form.referrer = 'test';   
+}
+
 const submit = () => {
     form.post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
+
+
 </script>
 
 <template>
@@ -28,6 +37,8 @@ const submit = () => {
         <Head title="Register" />
 
         <form @submit.prevent="submit">
+                <h1 class="text-center text-xl font-bold">Register</h1>
+
             <div>
                 <InputLabel for="name" value="Name" />
                 <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
@@ -38,12 +49,6 @@ const submit = () => {
                 <InputLabel for="email" value="Email" />
                 <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div>
-                <InputLabel for="transaction_id" value="Transaction ID" />
-                <TextInput id="transaction_id" type="text" class="mt-1 block w-full" v-model="form.transaction_id" required autocomplete="transaction_id" />
-                <InputError class="mt-2" :message="form.errors.transaction_id" />
             </div>
 
             <div>

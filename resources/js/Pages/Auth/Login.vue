@@ -33,7 +33,8 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <form @submit.prevent="submit">
+        <form @submit.prevent="submit" class="p-2">
+        <h1 class="text-center text-xl font-bold">Login</h1>
             <div>
                 <InputLabel for="email" value="Email" />
                 <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
@@ -61,6 +62,11 @@ const submit = () => {
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>
+            </div>
+            <div class="mx-auto flex text-center items-center justify-end mt-4">
+               <Link :href="route('register')">
+               Don't have an account? Register now!
+               </Link>
             </div>
         </form>
     </GuestLayout>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Ad;
 use Inertia\Inertia;
 use Redirect;
+use App\Models\User;
 
 class AdController extends Controller
 {
@@ -106,6 +107,15 @@ class AdController extends Controller
             $user->save();
             return response('success',200);
         }
+    }
+
+
+    public function showRefferals(Request $request){
+        $user = $request->user();
+        $refferals = User::where('referrer', $user->name)->get();
+        return Inertia::render('Refs',[
+            'refs' => $refferals
+        ]);
     }
     
 }

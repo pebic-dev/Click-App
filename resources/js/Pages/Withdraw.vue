@@ -31,10 +31,10 @@
                            <div class="grid grid-cols-1 gap-4">
                               <div class="vip_group">
                                 <div class="heading">
-                                <h1 class="text-center">Withdraw</h1>
+                                <h1 class="text-center text-xl font-bold">Withdraw</h1>
                                 <form @submit.prevent="submit">
                                     <div>
-                                        <InputLabel for="address" value="Transaction ID" />
+                                        <InputLabel for="address" value="Wallet Address" />
                                         <TextInput id="address" type="text" class="mt-1 block w-full" v-model="form.address" required autofocus autocomplete="address" />
                                         <InputError class="mt-2" :message="form.errors.address" />
                                         <InputLabel for="amount" value="Amount" />

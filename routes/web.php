@@ -29,6 +29,12 @@ Route::get('/topup', function () {
 Route::get('/withdraw', function () {
     return Inertia::render('Withdraw');
 })->middleware(['auth', 'verified'])->name('withdraw');
+Route::get('/howto', function () {
+    return Inertia::render('Howto');
+})->middleware(['auth', 'verified'])->name('howto');
+Route::get('/telegram', function () {
+    return Inertia::location('https://t.me/wishyofficial');
+})->middleware(['auth', 'verified'])->name('telegram');
 Route::get('/vip/1', 'App\Http\Controllers\AdController@showVip_1')->middleware(['auth', 'verified'])->name('vip1');
 Route::post('/vip/1/click', 'App\Http\Controllers\AdController@logicVip_1')->middleware(['auth', 'verified'])->name('vip1.post');
 
@@ -36,9 +42,10 @@ Route::get('/vip/2', 'App\Http\Controllers\AdController@showVip_2')->middleware(
 Route::post('/vip/2/click', 'App\Http\Controllers\AdController@logicVip_2')->middleware(['auth', 'verified'])->name('vip2.post');
 
 Route::get('/vip/3', 'App\Http\Controllers\AdController@showVip_3')->middleware(['auth', 'verified'])->name('vip3');
-Route::post('/vip/13/click', 'App\Http\Controllers\AdController@logicVip_3')->middleware(['auth', 'verified'])->name('vip3.post');
+Route::post('/vip/3/click', 'App\Http\Controllers\AdController@logicVip_3')->middleware(['auth', 'verified'])->name('vip3.post');
 
 Route::get('/vip/4', 'App\Http\Controllers\AdController@showVip_4')->middleware(['auth', 'verified'])->name('vip4');
+Route::get('/refferals', 'App\Http\Controllers\AdController@showRefferals')->middleware(['auth', 'verified'])->name('refferals');
 Route::post('/vip/4/click', 'App\Http\Controllers\AdController@logicVip_4')->middleware(['auth', 'verified'])->name('vip4.post');
 require __DIR__.'/auth.php';
 

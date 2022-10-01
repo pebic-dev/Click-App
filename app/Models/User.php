@@ -26,6 +26,7 @@ class User extends Authenticatable
         'balance',
         'clicks',
         'reffs',
+        'referrer',
     ];
 
     /**
